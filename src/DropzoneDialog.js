@@ -24,7 +24,7 @@ class DropzoneDialog extends React.Component {
             this.setState({
                 files: []
             })
-        } 
+        }
     }
     componentDidUpdate(prevProps, prevState){
         if(this.props.open !== prevProps.open){
@@ -37,8 +37,8 @@ class DropzoneDialog extends React.Component {
         }
         if(this.state.files.length !== prevState.files.length){
             this.setState({
-                disabled: this.state.files.length === 0 
-            });   
+                disabled: this.state.files.length === 0
+            });
         }
     }
 
@@ -73,7 +73,7 @@ class DropzoneDialog extends React.Component {
     }
     onDropRejected(files, evt){ // this passes it on to the parent component to do with it what they will
         console.log('Files rejected', files)
-        if(this.props.onDropRejected){ 
+        if(this.props.onDropRejected){
             this.props.onDropRejected(files, evt);
         }
     }
@@ -88,6 +88,7 @@ class DropzoneDialog extends React.Component {
                 <Dialog
                     open={this.state.open}
                     onClose={this.handleClose.bind(this)}
+                    classes={{root: this.dialogClass}}
                 >
                     <DialogTitle>{this.props.dialogTitle}</DialogTitle>
                     <DialogContent>
@@ -131,6 +132,7 @@ class DropzoneDialog extends React.Component {
 DropzoneDialog.defaultProps = {
     open: false,
     acceptedFiles: ['image/*', 'video/*', 'application/*'],
+    dialogClass: '',
     filesLimit: 3,
     maxFileSize: 3000000,
     showPreviews: true,
@@ -147,14 +149,15 @@ DropzoneDialog.defaultProps = {
     onDropRejected: () => {},
 }
 DropzoneDialog.propTypes = {
-    open: PropTypes.bool.isRequired, 
-    onSave: PropTypes.func, 
+    open: PropTypes.bool.isRequired,
+    onSave: PropTypes.func,
     onDelete: PropTypes.func,
     onClose: PropTypes.func,
     onChange: PropTypes.func,
     onDrop: PropTypes.func,
-    onDropRejected: PropTypes.func, 
+    onDropRejected: PropTypes.func,
     acceptedFiles: PropTypes.array,
+    dialogClass: PropTypes.string,
     filesLimit: PropTypes.number,
     maxFileSize: PropTypes.number,
     showPreviews: PropTypes.bool,

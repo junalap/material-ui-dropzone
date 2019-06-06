@@ -1768,7 +1768,6 @@ var DropzoneArea = function (_Component) {
             var classes = this.props.classes;
 
             var showPreviews = this.props.showPreviews && this.state.fileObjects.length > 0;
-            console.log(showPreviews);
             var showPreviewsInDropzone = this.props.showPreviewsInDropzone && this.state.fileObjects.length > 0;
             return React__default.createElement(
                 React.Fragment,
@@ -1845,7 +1844,7 @@ DropzoneArea.defaultProps = {
     acceptedFiles: ['image/*', 'video/*', 'application/*'],
     filesLimit: 3,
     maxFileSize: 3000000,
-    dropzoneText: 'Draaaag and drop an image file here or click',
+    dropzoneText: 'Drag and drop an image file here or click',
     showPreviews: false, // By default previews show up under in the dialog and inside in the standalone
     showPreviewsInDropzone: true,
     showFileNamesInPreview: false,
@@ -1981,7 +1980,8 @@ var DropzoneDialog = function (_React$Component) {
                     Dialog,
                     {
                         open: this.state.open,
-                        onClose: this.handleClose.bind(this)
+                        onClose: this.handleClose.bind(this),
+                        classes: { root: this.dialogClass }
                     },
                     React__default.createElement(
                         DialogTitle,
@@ -2039,6 +2039,7 @@ var DropzoneDialog = function (_React$Component) {
 DropzoneDialog.defaultProps = {
     open: false,
     acceptedFiles: ['image/*', 'video/*', 'application/*'],
+    dialogClass: '',
     filesLimit: 3,
     maxFileSize: 3000000,
     showPreviews: true,
@@ -2063,6 +2064,7 @@ DropzoneDialog.propTypes = {
     onDrop: PropTypes.func,
     onDropRejected: PropTypes.func,
     acceptedFiles: PropTypes.array,
+    dialogClass: PropTypes.string,
     filesLimit: PropTypes.number,
     maxFileSize: PropTypes.number,
     showPreviews: PropTypes.bool,
